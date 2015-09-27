@@ -1,0 +1,176 @@
+// ADDS A BROWSER PREFIX TO THE PROPERTY
+/* Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets */
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -khtml-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+/****************************************/
+
+/* Offcanvas by Nickolay Savchenko https://github.com/3mg */
+
+$offcanvas-bg-color: #6889ff; // @app-panel-color-1
+$offcanvas-fore-color: #fff;
+$offcanvas-width: 300px;
+$offcanvas-height: 300px;
+
+@mixin keyframes( $animationName ) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+ 
+@mixin animation( $args ) {
+  @include css3-prefix(animation, $args);
+}
+
+.left-offcanvas {
+    position: fixed;
+    height: 100%;
+    width: $offcanvas-width;
+    left: - $offcanvas-width;
+    top: 0;
+    
+    background-color: $offcanvas-bg-color;
+    color: $offcanvas-fore-color;
+    z-index: 11000;
+    
+    &:before {
+        background-color: $offcanvas-bg-color;
+        
+        content: "";
+        position: fixed;
+        width: $offcanvas-width;
+        height: $offcanvas-height;
+        top: - $offcanvas-height;
+        left: 0;
+    }
+}
+
+.top-offcanvas {
+    position: fixed;
+    width: 100%;
+    height: $offcanvas-height;
+    top: - $offcanvas-height;
+    left: 0;
+    
+    background-color: $offcanvas-bg-color;
+    color: $offcanvas-fore-color;
+    z-index: 11000;
+    
+    &:before {
+        background-color: $offcanvas-bg-color;
+        
+        content: "";
+        position: fixed;
+        width: $offcanvas-width;
+        height: $offcanvas-height;
+        top: 0;
+        right: 100%;
+    }
+}
+
+.offcanvas-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    display: none;
+    &.show {
+        display: block;
+    }
+}
+
+.show-left-offcanvas {
+    @include animation( showLeftOffcanvas 0.4s both ease );
+}
+
+.hide-left-offcanvas {
+    @include animation( hideLeftOffcanvas 0.4s both ease );
+}
+
+.show-top-offcanvas {
+    @include animation( showTopOffcanvas 0.4s both ease );
+}
+
+.hide-top-offcanvas {
+    @include animation( hideTopOffcanvas 0.4s both ease );
+}
+
+.show-left-hide-top-offcanvas {
+    @include animation( showLeftIfTopOpenedOffcanvas 0.4s both ease );
+}
+
+.show-top-hide-left-offcanvas {
+    @include animation( showTopIfLeftOpenedOffcanvas 0.4s both ease );
+}
+
+@include keyframes (showLeftOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(0, 0, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(300px, 0, 0));
+    }
+}
+
+@include keyframes (showLeftIfTopOpenedOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(0, 300px, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(300px, 0, 0));
+    }
+}
+
+@include keyframes (hideLeftOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(300px, 0, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(0, 0, 0));
+    }
+}
+
+@include keyframes (showTopOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(0, 0, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(0, 300px, 0));
+    }
+}
+
+@include keyframes (showTopIfLeftOpenedOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(300px, 0, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(0, 300px, 0));
+    }
+}
+
+@include keyframes (hideTopOffcanvas) {
+    from {
+        @include css3-prefix('transform', translate3d(0, 300px, 0));
+    }
+    to {
+        @include css3-prefix('transform', translate3d(0, 0, 0));
+    }
+}
