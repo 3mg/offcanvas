@@ -8,7 +8,7 @@
   ],
   "ignore": [
     "**/.*",
-    "demo",
+    "demo"
   ],
   "dependencies": {},
   "devDependencies": {},
