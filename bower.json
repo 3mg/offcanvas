@@ -1,0 +1,16 @@
+{
+  "name": "offcanvas",
+  "main": [
+    "./css/offcanvas.css",
+    "./sass/offcanvas.scss",
+    "./less/offcanvas.less",
+    "./js/ng-offcanvas.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "demo",
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/3mg/offcanvas"
+}
