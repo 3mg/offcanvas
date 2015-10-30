@@ -126,22 +126,22 @@ $offcanvas-height: 300px;
         @include css3-prefix('transform', translate3d(0, 0, 0));
     }
     to {
-        @include css3-prefix('transform', translate3d(300px, 0, 0));
+        @include css3-prefix('transform', translate3d($offcanvas-width, 0, 0));
     }
 }
 
 @include keyframes (showLeftIfTopOpenedOffcanvas) {
     from {
-        @include css3-prefix('transform', translate3d(0, 300px, 0));
+        @include css3-prefix('transform', translate3d(0, $offcanvas-height, 0));
     }
     to {
-        @include css3-prefix('transform', translate3d(300px, 0, 0));
+        @include css3-prefix('transform', translate3d($offcanvas-width, 0, 0));
     }
 }
 
 @include keyframes (hideLeftOffcanvas) {
     from {
-        @include css3-prefix('transform', translate3d(300px, 0, 0));
+        @include css3-prefix('transform', translate3d($offcanvas-width, 0, 0));
     }
     to {
         @include css3-prefix('transform', translate3d(0, 0, 0));
@@ -153,22 +153,22 @@ $offcanvas-height: 300px;
         @include css3-prefix('transform', translate3d(0, 0, 0));
     }
     to {
-        @include css3-prefix('transform', translate3d(0, 300px, 0));
+        @include css3-prefix('transform', translate3d(0, $offcanvas-height, 0));
     }
 }
 
 @include keyframes (showTopIfLeftOpenedOffcanvas) {
     from {
-        @include css3-prefix('transform', translate3d(300px, 0, 0));
+        @include css3-prefix('transform', translate3d($offcanvas-width, 0, 0));
     }
     to {
-        @include css3-prefix('transform', translate3d(0, 300px, 0));
+        @include css3-prefix('transform', translate3d(0, $offcanvas-height, 0));
     }
 }
 
 @include keyframes (hideTopOffcanvas) {
     from {
-        @include css3-prefix('transform', translate3d(0, 300px, 0));
+        @include css3-prefix('transform', translate3d(0, $offcanvas-height, 0));
     }
     to {
         @include css3-prefix('transform', translate3d(0, 0, 0));
