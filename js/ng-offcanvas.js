@@ -14,6 +14,9 @@
         var $el = angular.element("[offcanvas-aware]");
         
         var offcanvas = {
+            refreshOffcanvasAwareList: function() {
+                $el = angular.element("[offcanvas-aware]");
+            },
             showBackdrop: function() {
                 backdrop.addClass('show');
             },
