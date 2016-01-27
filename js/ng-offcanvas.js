@@ -5,17 +5,33 @@
     var offcanvasModule = angular.module('a3mgOffcanvas', []);
 
     offcanvasModule.factory("offcanvas", function() {
-        var backdrop = angular.element(".offcanvas-backdrop");
-        if (backdrop.length == 0) {
-            backdrop = angular.element("<div class='offcanvas-backdrop' offcanvas-aware></div>");
-            backdrop.appendTo(angular.element("body"));
-        }
-        
-        var $el = angular.element("[offcanvas-aware]");
+        var backdrop;
+        var $el;
         
         var offcanvas = {
+            refreshBackdrop: function () {
+                backdrop = angular.element(".offcanvas-backdrop");
+                if (backdrop.length == 0) {
+                    backdrop = angular.element("<div class='offcanvas-backdrop' offcanvas-aware></div>");
+                    backdrop.appendTo(angular.element("body"));
+                }
+            },
             refreshOffcanvasAwareList: function() {
                 $el = angular.element("[offcanvas-aware]");
+
+                $el.on(
+                    //transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd
+                    "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+                    function() {
+                        var $this = angular.element(this);
+                        if (!$this.is(".show-left-offcanvas, .show-top-offcanvas, .show-left-hide-top-offcanvas, .show-top-hide-left-offcanvas")) {
+
+                            $this.removeClass("hide-top-offcanvas");
+                            $this.removeClass("hide-left-offcanvas");
+
+                        }
+                    }
+                );
             },
             showBackdrop: function() {
                 backdrop.addClass('show');
@@ -48,6 +64,8 @@
                     $el.removeClass("show-left-offcanvas");
                     $el.removeClass("show-left-hide-top-offcanvas");
                 }
+
+                $el.css("animation", null);
             },
             
             toggleLeftOffcanvas: function (direction) {
@@ -75,6 +93,7 @@
                     $el.removeClass("show-top-offcanvas");
                     $el.removeClass("show-top-hide-left-offcanvas");
                 }
+                $el.css("animation", "");
             },
             
             resetOffcanvas: function () {
@@ -104,7 +123,10 @@
                 }
             }
         };
-        
+
+        offcanvas.refreshBackdrop();
+        offcanvas.refreshOffcanvasAwareList();
+
         return offcanvas;
     });
     
